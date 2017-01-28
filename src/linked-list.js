@@ -40,9 +40,13 @@ class LinkedList {
         return node.data;
     }
 
-    insertAt(index, data) {}
+    insertAt(index, data) {
 
-    isEmpty() {}
+    }
+
+    isEmpty() {
+        return this.length == 0;
+    }
 
     clear() {}
 

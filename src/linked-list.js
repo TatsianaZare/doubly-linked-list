@@ -32,7 +32,13 @@ class LinkedList {
         return node.data;
     }
 
-    at(index) {}
+    at(index) {
+        var node = this._head;           
+        for (var i = 0; i < index; i ++) {
+            node = node.next;
+            }
+        return node.data;
+    }
 
     insertAt(index, data) {}
 

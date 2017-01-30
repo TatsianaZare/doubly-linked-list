@@ -64,7 +64,19 @@ class LinkedList {
         this.length = 0;
     }
 
-    deleteAt(index) {}
+    deleteAt(index) {
+        var node = this._head;           
+        for (var i = 0; i < index; i ++) {
+            node = node.next;
+            }
+        var nodePrev = node.prev;
+        var nodeNext = node.next;
+        node.prev = null;
+        node.next = null;
+        nodeNext.prev = nodePrev;
+        nodePrev.next = nodeNext;
+        this.length -= 1;
+    }
 
     reverse() {}
 

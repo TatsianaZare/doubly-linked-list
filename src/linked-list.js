@@ -24,12 +24,12 @@ class LinkedList {
 
     head() {
         const node = this._head;
-        return node.data;
+        return node !== null ? node.data : null;
     }
 
     tail() {
         const node = this._tail;
-        return node.data;
+        return node !== null ? node.data : null;
     }
 
     at(index) {
@@ -48,7 +48,11 @@ class LinkedList {
         return this.length == 0;
     }
 
-    clear() {}
+    clear() {
+        this._head = null;
+        this._tail = null;
+        this.length = 0;
+    }
 
     deleteAt(index) {}
 

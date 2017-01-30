@@ -20,6 +20,8 @@ class LinkedList {
             this._tail = node;
         }
         this.length += 1;
+
+        return this;
     }
 
     head() {
@@ -41,7 +43,13 @@ class LinkedList {
     }
 
     insertAt(index, data) {
-        var node = this._head;           
+        var node = this._head; 
+        if (node == null && index == 0) {
+            this.append(data);
+
+            return this;
+        }  
+
         for (var i = 0; i < index; i ++) {
             node = node.next;
             }
@@ -52,6 +60,8 @@ class LinkedList {
         nodeNew.next = node;
         node.prev = nodeNew;
         this.lenght += 1;
+
+        return this;
     }
 
     isEmpty() {
@@ -62,6 +72,8 @@ class LinkedList {
         this._head = null;
         this._tail = null;
         this.length = 0;
+
+        return this;
     }
 
     deleteAt(index) {
@@ -73,14 +85,44 @@ class LinkedList {
         var nodeNext = node.next;
         node.prev = null;
         node.next = null;
-        nodeNext.prev = nodePrev;
-        nodePrev.next = nodeNext;
+        if (nodeNext !== null) nodeNext.prev = nodePrev;
+        if (nodePrev !== null) nodePrev.next = nodeNext;
         this.length -= 1;
+
+        return this;
     }
 
-    reverse() {}
+    reverse() {
+        if (this.length == 1)
+            return this;
 
-    indexOf(data) {}
+        var node = this._head;
+        var nodeNext = node.next;
+        this._tail = node;
+        for (var i = 0; i < this.length - 1; i++) {
+            node.prev = nodeNext;
+            nodeNext = nodeNext.next;
+            node.prev.next = node;
+            node = node.prev;
+        }
+        this._head = node;
+
+        return this;
+    }
+
+    indexOf(data) {
+        var result = -1;
+        var node = this._head;           
+        for (var i = 0; i < this.length; i ++) {
+            if (node.data == data) {
+                result = i;
+                break;
+            }
+            node = node.next;
+            }
+
+            return result;
+    }
 }
 
 module.exports = LinkedList;
